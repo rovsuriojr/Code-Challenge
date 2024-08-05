@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const TypeAhead = () => {
   const [userInput, setUserInput] = useState(''); // To get user input
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleInputChange = async (e) => { // To capture every change on user input in input field
     const value = e.target.value;
     setUserInput(value);
 
-    console.log(userInput)
+    if (value.length > 0) {
+        const response = await axios.get('/sampleData.json'); // call the API
+        let filteredSuggestions = response.data.filter(item => // variable to get array of colors that contains 'userInput'
+          item.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setSuggestions(filteredSuggestions);
+        console.log(filteredSuggestions)
+      } else {
+        setSuggestions([]);
+      }
 
   };
 

@@ -1,5 +1,4 @@
 
-import './App.css';
 import TypeAhead from './typeAhead';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
