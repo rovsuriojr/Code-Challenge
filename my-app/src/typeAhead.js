@@ -15,7 +15,6 @@ const TypeAhead = () => {
           item.name.toLowerCase().includes(value.toLowerCase())
         );
         setSuggestions(filteredSuggestions);
-        console.log(filteredSuggestions)
       } else {
         setSuggestions([]);
       }
@@ -31,8 +30,19 @@ const TypeAhead = () => {
         value={userInput}
         onChange={handleInputChange}
       />
+    {suggestions.length > 0 && (
+        <ul className="list-group mt-2">
+          {suggestions.map(suggestion => (
+            <li key={suggestion.id} className="list-group-item">
+              {suggestion.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
 
 export default TypeAhead;
+
+
